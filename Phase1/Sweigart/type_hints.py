@@ -10,3 +10,5 @@ def describeNumber(number: int) -> str:
 
 myLuckyNumber: int = 42
 print(describeNumber(myLuckyNumber))
+
+
