@@ -1,8 +1,10 @@
-This repo is to contain the codebase that documents my learning in public for a 10/11 day curriculum related to a possible second-line interview with a successful MLOps consultancy.  The point of this sprint learn is to bring my production-grade Python, software engineering, ML pipelines, system design & data intensity and containerisation knowledge back up to some capability.
+This repo is to contain the codebase that documents my learning in public for a 10/11 day curriculum related to a possible second-line interview with a successful MLOps consultancy.  The point of this sprint learn is to bring my production-grade Python, software engineering, ML pipelines, system design & data intensity and containerisation knowledge up to some capability.
 
 The curriculum, developed in collaboration with Google Gemini, utilising books in my personal library, as at the end of December 2025 is as follows:
 
 This 60-hour curriculum (6 hours/day over 10 days) is mapped to your specific books to prepare you for their technical standards.
+
+Once I'm happy with my knowledge around my MLOps methods and pipelines, this project, especially phase 2, will be the knowledge-base upon which I can build to develop my ML Engineer/Research Scientist work.
 
 ---
 
