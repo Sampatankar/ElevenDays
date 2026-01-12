@@ -60,7 +60,10 @@ from sklearn import tree
 from sklearn import metrics
 
 # initialise decision tree classifier class with a max-depth of 3:
-clf = tree.DecisionTreeClassifier(max_depth=3)
+# clf = tree.DecisionTreeClassifier(max_depth=3)
+
+# Modified to max-depth of 7:
+clf = tree.DecisionTreeClassifier(max_depth=7)
 
 # Choose the columns you want to train on, which will be the features of the model:
 cols = [
@@ -79,4 +82,89 @@ cols = [
 
 # train the model on the provided features and mapped quality from before:
 clf.fit(df_train[cols], df_train.quality)
+
+
+# TESTING THE ACCURACY OF THE MODEL ON THE TRAINING SET AND THE TEST SET:
+# generate predictions on the training set:
+train_predictions = clf.predict(df_train[cols])
+
+# generate predictions on the test set:
+test_predictions = clf.predict(df_test[cols])
+
+# calculate the accuracy of predictions on training data set:
+train_accuracy = metrics.accuracy_score(df_train.quality, train_predictions)
+
+# calculate the accuracy of predictions on test data set:
+test_accuracy = metrics.accuracy_score(df_test.quality, test_predictions)
+
+
+# print(f"Training predictions: ", train_predictions)
+# print(f"Test predictions: ", test_predictions)
+# print(f"Train accuracy: ", train_accuracy)
+# print(f"Test accuracy: ", test_accuracy)
+
+
+# CALCULATE ACCURACIES FOR DIFFERENT VALUES OF OF MAX_DEPTH AND MAKING A PLOT:
+import matplotlib
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# this is our global size of label text on the plots
+matplotlib.rc('xtick', labelsize=20)
+matplotlib.rc('ytick', labelsize=20)
+
+#ensure plot is displayed inside the notebook (for use in Jupyter notebooks)
+# %matplotlib inline
+
+# initialise lists to store accuracies for training and test data - starting with 50% accuracy:
+train_accuracies = [0.5]
+test_accuracies = [0.5]
+
+# iterate over a few depth values:
+for depth in range(1,25):
+    # initialise the model:
+    clf = tree.DecisionTreeClassifier(max_depth=depth)
+
+    # columns/features for training note that, this can be done outside the loop
+    # has been initialised already above, but could be placed at this level of indent
+
+    # fit the model on given features:
+    clf.fit(df_train[cols], df_train.quality)
+
+    # create training & test predictions:
+    train_predictions = clf.predict(df_train[cols])
+    test_predictions = clf.predict(df_test[cols])
+
+    # calculate training and test accuracies:
+    train_accuracy = metrics.accuracy_score(
+        df_train.quality, train_predictions
+    )
+    test_accuracy = metrics.accuracy_score(
+        df_test.quality, test_predictions
+    )
+
+    # append accuracies:
+    train_accuracies.append(train_accuracy)
+    test_accuracies.append(test_accuracy)
+
+# create two plots using matplotlib and seaborn:
+plt.figure(figsize=(10, 5))
+sns.set_style("whitegrid")
+plt.plot(train_accuracies, label="train accuracy")
+plt.plot(test_accuracies, label="test accuracy")
+plt.legend(loc="upper left", prop={'size': 15})
+plt.xticks(range(0, 26, 5))
+plt.xlabel("max depth", size=20)
+plt.ylabel("accuracy", size=20)
+plt.show()
+
+
+
+
+
+
+
+
+
+
 
