@@ -103,6 +103,12 @@ test_accuracy = metrics.accuracy_score(df_test.quality, test_predictions)
 # print(f"Train accuracy: ", train_accuracy)
 # print(f"Test accuracy: ", test_accuracy)
 
+"""
+==========================================================================================================
+1. Comment out the print statements above, and now you can run the section below
+
+"""
+
 
 # CALCULATE ACCURACIES FOR DIFFERENT VALUES OF OF MAX_DEPTH AND MAKING A PLOT:
 import matplotlib
@@ -148,17 +154,82 @@ for depth in range(1,25):
     test_accuracies.append(test_accuracy)
 
 # create two plots using matplotlib and seaborn:
-plt.figure(figsize=(10, 5))
-sns.set_style("whitegrid")
-plt.plot(train_accuracies, label="train accuracy")
-plt.plot(test_accuracies, label="test accuracy")
-plt.legend(loc="upper left", prop={'size': 15})
-plt.xticks(range(0, 26, 5))
-plt.xlabel("max depth", size=20)
-plt.ylabel("accuracy", size=20)
-plt.show()
+# plt.figure(figsize=(10, 5))
+# sns.set_style("whitegrid")
+# plt.plot(train_accuracies, label="train accuracy")
+# plt.plot(test_accuracies, label="test accuracy")
+# plt.legend(loc="upper left", prop={'size': 15})
+# plt.xticks(range(0, 26, 5))
+# plt.xlabel("max depth", size=20)
+# plt.ylabel("accuracy", size=20)
+# plt.show()
+
+"""
+=================================================================================
+2. Uncomment the create two plots using matplotlib and seaborn section to run it, then comment out again to run the next section.
+"""
+
+from sklearn import model_selection
+
+"""
+splitting data into k-equal parts using K-fold from sci-kit learn
+"""
+
+# if __name__ == "__main__":
+#     # Training data is in a CSV file:
+#     df = pd.read_csv("train.csv")
+
+#     # we create a mew column called kfold and fill it with -1:
+#     df["kfold"] = -1
+
+#     # the next step is to randomise the rows of the data:
+#     df = df.sample(frac=1).reset_index(drop=True)
+
+#     # initialise the kfold class from the model_selection module:
+#     kf = model_selection.KFold(n_splits=5)
+
+#     # fill the new kfold column:
+#     for fold, (trn_, val_) in enumerate(kf.split(X=df)):
+#         df.loc[val_, 'kfold'] = fold
+
+#     # save the new csv with a kfold column:
+#     df.to_csv("train_folds.csv", index=False)
 
 
+"""
+splitting the data into k-equal parts using stratified k-fold cross-validation from sklearn
+"""
+
+# if __name__ == "__main__":
+#     # Training data is in a CSV file:
+#     df = pd.read_csv("train.csv")
+
+#     # we create a mew column called kfold and fill it with -1:
+#     df["kfold"] = -1
+
+#     # the next step is to randomise the rows of the data:
+#     df = df.sample(frac=1).reset_index(drop=True)
+
+#     # fetch targets:
+#     y = df.target.values
+
+#     # initialise the kfold class from the model_selection module:
+#     kf = model_selection.StratifiedKFold(n_splits=5)
+
+#     # fill the new stratified kfold column:
+#     for f, (t_, v_) in enumerate(kf.split(X=df, y=y)):
+#         df.loc[v_, 'strat-kfold'] = f
+
+#     # save the new csv with a kfold column:
+#     df.to_csv("train_folds.csv", index=False)
+
+
+
+"""
+===================================================================================================
+3. modify the code above when you have you own dataset to use.
+Below is the use of k-fold cross-validation for a regression problem, rather than the classification problems above.
+"""
 
 
 
