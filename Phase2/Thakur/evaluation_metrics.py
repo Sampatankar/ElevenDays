@@ -166,5 +166,24 @@ def precision(y_true, y_pred):
 # print(precision(l1, l2))
 
 
+# Implementing Recall in code:
+def recall(y_true, y_pred):
+    """
+    Function to calculate recall using tp and fn
+    
+    :param y_true: List of true values
+    :param y_pred: List of predicted values
+    :return: recall score
+
+    """
+
+    tp = true_positive(y_true, y_pred)
+    fn = false_negative(y_true, y_pred)
+    recall = tp / (tp + fn)
+    return recall
+
+# uncomment the print statement for this basic accuracy score:
+# print(recall(l1, l2))
+
 
 
