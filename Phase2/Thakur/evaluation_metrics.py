@@ -1,6 +1,7 @@
 import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn import metrics
 
 """
 This is the initial file relating to the Evaluation Metrics section from pg.30 in Thakur.
@@ -216,11 +217,39 @@ for i in thresholds:
     precisions.append(p)
     recalls.append(r)
 
-plt.figure(figsize=(7, 7))
-plt.plot(recalls, precisions)
-plt.xlabel('Recall', fontsize=15)
-plt.ylabel('Precision', fontsize=15)
-plt.show()
+# uncomment the print statement for this basic accuracy score:
+# plt.figure(figsize=(7, 7))
+# plt.plot(recalls, precisions)
+# plt.xlabel('Recall', fontsize=15)
+# plt.ylabel('Precision', fontsize=15)
+# plt.show()
+
+
+
+# Implement F1 score:
+def f1(y_true, y_pred):
+    """
+    Function to implement f1 score:
+    
+    :param y_true: List of true values
+    :param y_pred: List of predicted values
+    :return: F1 score
+
+    """
+
+    p = precision(y_true, y_pred)
+    r = recall(y_true, y_pred)
+    score = (2 * p * r) / (p + r)
+    return score
+
+y_true = [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0]
+y_pred = [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0]
+
+print(f1(y_true, y_pred))
+
+# implement f1 from sklearn:
+print(metrics.f1_score(y_true, y_pred))
+
 
 
 
