@@ -270,4 +270,22 @@ def tpr(y_true, y_pred):
 
 
 
+# implementing FPR:
+def fpr(y_true, y_pred):
+    """
+    Function to implement FPR
+    
+    :param y_true: List of true values
+    :param y_pred: List of predicted values
+    :return: FPR score
+
+    """
+
+    fp = false_positive(y_true, y_pred)
+    tn = true_negative(y_true, y_pred)
+    return fp / (tn + fp)
+
+
+
+
 
