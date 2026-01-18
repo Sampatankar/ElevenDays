@@ -109,12 +109,36 @@ def false_negative(y_true, y_pred):
             fn += 1
     return fn
 
-print(true_positive(l1, l2))
-print(false_positive(l1, l2))
-print(false_positive(l1, l2))
-print(false_negative(l1, l2))
+
+# uncomment the print statement for this basic accuracy score:
+# print(true_positive(l1, l2))
+# print(false_positive(l1, l2))
+# print(false_positive(l1, l2))
+# print(false_negative(l1, l2))
 
 
+# Accuracy implementing TP, TN, FP and FN:
 
+def accuracy_v2(y_true, y_pred):
+    """
+    Function to calculate accuracy using tp/tn/fp/fn
+    
+    :param y_true: list of true values
+    :param y_pred: list of predicted values
+    :return: accuracy score
 
+    """
+
+    tp = true_positive(y_true, y_pred)
+    fp = false_positive(y_true, y_pred)
+    fn = false_negative(y_true, y_pred)
+    tn = true_negative(y_true, y_pred)
+
+    accuracy_score = (tp + tn) / (tp + tn + fp + fn)
+    return accuracy_score
+
+print(accuracy(l1, l2))
+print(accuracy_v2(l1, l2))
+# the sklearn metrics method:
+print(metrics.accuracy_score(l1, l2))
 
