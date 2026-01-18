@@ -245,12 +245,28 @@ def f1(y_true, y_pred):
 y_true = [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0]
 y_pred = [0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0]
 
-print(f1(y_true, y_pred))
 
-# implement f1 from sklearn:
-print(metrics.f1_score(y_true, y_pred))
+# uncomment the print statement for this basic accuracy score:
+# print(f1(y_true, y_pred))
+
+# # implement f1 from sklearn:
+# print(metrics.f1_score(y_true, y_pred))
 
 
+
+# Implementing recall as TPR/sensitivity:
+def tpr(y_true, y_pred):
+    """
+    Function to implement recall as TPR
+    
+    :param y_true: List of true values
+    :param y_pred: List of predicted values
+
+    :return: TPR
+
+    """
+
+    return recall(y_true, y_pred)
 
 
 
