@@ -137,8 +137,34 @@ def accuracy_v2(y_true, y_pred):
     accuracy_score = (tp + tn) / (tp + tn + fp + fn)
     return accuracy_score
 
-print(accuracy(l1, l2))
-print(accuracy_v2(l1, l2))
-# the sklearn metrics method:
-print(metrics.accuracy_score(l1, l2))
+
+# uncomment the print statement for this basic accuracy score:
+# print(accuracy(l1, l2))
+# print(accuracy_v2(l1, l2))
+# # the sklearn metrics method:
+# print(metrics.accuracy_score(l1, l2))
+
+
+
+# Implementing Precision in code:
+def precision(y_true, y_pred):
+    """
+    Function to calculate precison using tp and fp
+    
+    :param y_true: List of true values
+    :param y_pred: List of predicted values
+    :return: precision score
+
+    """
+
+    tp = true_positive(y_true, y_pred)
+    fp = false_positive(y_true, y_pred)
+    precision = tp / (tp+ fp)
+    return precision
+
+# uncomment the print statement for this basic accuracy score:
+# print(precision(l1, l2))
+
+
+
 
