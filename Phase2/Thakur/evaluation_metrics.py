@@ -315,14 +315,23 @@ for threshold in thresholds:
     fpr_list.append(temp_fpr)
 
 
-plt.figure(figsize=(7, 7))
-plt.fill_between(fpr_list, tpr_list, alpha=0.4)
-plt.plot(fpr_list, tpr_list, lw=3)
-plt.xlim(0, 1.0)
-plt.ylim(0, 1.0)
-plt.xlabel('FPR', fontsize=15)
-plt.ylabel('TPR', fontsize=15)
-plt.show()
+# uncomment the print statement for this basic accuracy score:
+# plt.figure(figsize=(7, 7))
+# plt.fill_between(fpr_list, tpr_list, alpha=0.4)
+# plt.plot(fpr_list, tpr_list, lw=3)
+# plt.xlim(0, 1.0)
+# plt.ylim(0, 1.0)
+# plt.xlabel('FPR', fontsize=15)
+# plt.ylabel('TPR', fontsize=15)
+# plt.show()
+
+
+
+# sklearn to calculate AUC from ROC plot:
+
+# reusing y_true and y_pred arrays from above
+# uncomment the print statement for this basic accuracy score:
+# print(metrics.roc_auc_score(y_true, y_pred))
 
 
 
