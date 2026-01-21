@@ -334,5 +334,38 @@ for threshold in thresholds:
 # print(metrics.roc_auc_score(y_true, y_pred))
 
 
+# selecting threshold from ROC plot:
+# empty lists to store true positive and false positive values:
+
+tp_list = []
+fp_list = []
+
+# actual targets:
+y_true = [
+    0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1
+]
+
+# predicted probabilities of a sample being 1:
+y_pred = [
+    0.1, 0.3, 0.2, 0.6, 0.8, 0.05, 0.9, 0.5, 0.3, 0.66, 0.3, 0.2, 0.85, 0.15, 0.99
+]
+
+# some handmade thresholds:
+thresholds = [
+    0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.85, 0.9, 0.99, 1.0
+]
+
+# loop over all thresholds:
+for threshold in thresholds:
+    # calculate predictions for a given threshold:
+    temp_pred = [1 if x >= threshold else 0 for x in y_pred]
+    # calculate tp:
+    temp_tp = true_positive(y_true, temp_pred)
+    # calculate fp:
+    temp_fp = false_positive(y_true, temp_pred)
+    # append to lists:
+    tp_list.append(temp_tp)
+    fp_list.append(temp_fp)
+
 
 
