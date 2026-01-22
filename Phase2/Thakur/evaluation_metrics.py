@@ -2,6 +2,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn import metrics
+import numpy as np
 
 """
 This is the initial file relating to the Evaluation Metrics section from pg.30 in Thakur.
@@ -366,6 +367,46 @@ for threshold in thresholds:
     # append to lists:
     tp_list.append(temp_tp)
     fp_list.append(temp_fp)
+
+
+# Implementing a Log Loss function:
+def log_loss(y_true, y_proba):
+    """
+    Function to calculate log_loss
+    
+    :param y_true: List of true values
+    :param y_proba: List of probabilities for 1 
+    :return: overall log loss
+
+    """
+
+    # define an epsilon value, which can also be used as input.  The value is used to clip probabilities:
+    epsilon = 1e-15
+
+    # initialise an empty list to store individual losses
+    loss = []
+
+    # loop over all true and predicted probability values:
+    for yt, yp in zip(y_true, y_proba):
+        # adjust probability, 0 gets converted to 1e-15, 1 gets converted to 1-1e15
+        yp = np.clip(yp, epsilon, 1 - epsilon)
+        # calculate loss for one sample
+        temp_loss = - 1.0 * (yt * np.log(yp) + (1 - yt) * np.log(1 - yp))
+        # add to the loss list:
+        loss.append(temp_loss)
+    # return mean loss over all samples
+    return np.mean(loss)
+
+y_proba = [0.1, 0.3, 0.2, 0.6, 0.8, 0.05, 0.9, 0.5, 0.3, 0.66, 0.3, 0.2, 0.85, 0.15, 0.99]
+
+
+# uncomment the print statement for this basic accuracy score:
+# print(log_loss(y_true, y_proba))
+
+# # the SKlearn function:
+# print(metrics.log_loss(y_true, y_proba))
+
+
 
 
 
