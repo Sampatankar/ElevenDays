@@ -449,6 +449,43 @@ def macro_precisiom(y_true, y_pred):
 
 
 
+# Implementation of micro-averaged precision:
+
+def micro_precision(y_true, y_pred):
+    """
+    Function to calculate micro-averaged precision
+    
+    :param y_true: List of True Values
+    :param y_pred: List of Predicted Values
+    :return: micro-averaged precision
+
+    """
+
+    # find the number of classes by taking the length of the number of unique values in the true list
+    num_classes = len(np.unique(y_true))
+
+    # initialise tp and fp to 0
+    tp = 0
+    fp = 0
+
+    # loop over all classes:
+    for class_ in range(num_classes):
+        # all classes except current are considered negative
+        temp_true = [1 if p == class_ else 0 for p in y_true]
+        temp_pred = [1 if p == class_ else 0 for p in y_pred]
+
+        # calculate true positive for current class and update overall tp
+        tp += true_positive(temp_true, temp_pred)
+
+        # calculate false positive for current class and update overall tp
+        fp += false_positive(temp_true, temp_pred)
+
+    # calculate and return overall precision:
+    precision = tp / (tp + fp)
+    return precision
+
+
+
 
 
 
