@@ -407,6 +407,48 @@ y_proba = [0.1, 0.3, 0.2, 0.6, 0.8, 0.05, 0.9, 0.5, 0.3, 0.66, 0.3, 0.2, 0.85, 0
 # print(metrics.log_loss(y_true, y_proba))
 
 
+# Implementation of Macro Averaged Precision:
+
+def macro_precisiom(y_true, y_pred):
+    """
+    Function to calculate macro averaged precision:
+    
+    :param y_true: List of True Values
+    :param y_pred: List of Predicted Values
+    :return: macro precision score
+
+    """
+
+    # find the number of classes by taking the length of the number of unique values in the true list
+    num_classes = len(np.unique(y_true))
+
+    # initialise precision to 0:
+    precision = 0
+
+    # loop over all classes:
+    for class_ in range(num_classes):
+        # all classes except current are considered negative
+        temp_true = [1 if p == class_ else 0 for p in y_true]
+        temp_pred = [1 if p == class_ else 0 for p in y_pred]
+
+        # calculate true positive for current class:
+        tp = true_positive(temp_true, temp_pred)
+
+        # calculate false positive for current class:
+        fp = false_positive(temp_true, temp_pred)
+
+        # calculate precision for current class:
+        temp_precision = tp / (tp + fp)
+
+        # keep adding precision for all classes:
+        precision += temp_precision
+
+    # calculate and return average precision over all classes:
+    precision /= num_classes
+    return precision
+
+
+
 
 
 
