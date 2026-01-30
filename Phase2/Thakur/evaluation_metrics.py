@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn import metrics
 import numpy as np
+from collections import Counter
 
 """
 This is the initial file relating to the Evaluation Metrics section from pg.30 in Thakur.
@@ -341,15 +342,15 @@ for threshold in thresholds:
 tp_list = []
 fp_list = []
 
-# actual targets:
-y_true = [
-    0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1
-]
+# actual targets: UNCOMMENT TO RUN THE FUNCTIONS BELOW UNTIL PRECISION & RECALL MULTICLASS
+# y_true = [
+#     0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1
+# ]
 
-# predicted probabilities of a sample being 1:
-y_pred = [
-    0.1, 0.3, 0.2, 0.6, 0.8, 0.05, 0.9, 0.5, 0.3, 0.66, 0.3, 0.2, 0.85, 0.15, 0.99
-]
+# # predicted probabilities of a sample being 1:
+# y_pred = [
+#     0.1, 0.3, 0.2, 0.6, 0.8, 0.05, 0.9, 0.5, 0.3, 0.66, 0.3, 0.2, 0.85, 0.15, 0.99
+# ]
 
 # some handmade thresholds:
 thresholds = [
@@ -485,7 +486,64 @@ def micro_precision(y_true, y_pred):
     return precision
 
 
+# Implementation of weighted precision:
+
+def weighted_precision(y_true, y_pred):
+    """
+    Function to calculate Weighted Precision
+    
+    :param y_true: List of True Values
+    :param y_pred: List of Predicted Values
+    :return: weighted precision
+
+    """
+
+    
+    # find the number of classes by taking the length of unique values in the true list
+    num_classes = len(np.unique(y_true))
+
+    # create class:sample count dictionary - output similar to: {0: 20, 1: 15, 2: 21}
+    class_counts = Counter(y_true)
+
+    # initialise precision to 0:
+    precision = 0
+
+    # loop over all classes:
+    for class_ in range(num_classes):
+        # all classes except the current are considered negative:
+        temp_true = [1 if p == class_ else 0 for p in y_true]
+        temp_pred = [1 if p == class_ else 0 for p in y_pred]
+
+        # calculate tp and fp for class:
+        tp = true_positive(temp_true, temp_pred)
+        fp = false_positive(temp_true, temp_pred)
+
+        # calculate precision of class:
+        temp_precision = tp / (tp + fp)
+
+        # multiple precision with count of samples in class:
+        weighted_precision = class_counts[class_] * temp_precision
+
+        # add to overall precision:
+        precision += weighted_precision
+
+    # calculate  overall precision by dividing by total number of samples:
+    overall_precision = precision / len(y_true)
+
+    return overall_precision
 
 
+y_true = [0, 1, 2, 0, 1, 2, 0, 2, 2]
 
+y_pred = [0, 2, 1, 0, 2, 1, 0, 0, 2]
+
+# use of implementations and sklearn versions:
+print(macro_precisiom(y_true, y_pred))
+print(metrics.precision_score(y_true, y_pred, average="macro"))
+
+print(micro_precision(y_true, y_pred))
+print(metrics.precision_score(y_true, y_pred, average="micro"))
+
+print(weighted_precision(y_true, y_pred))
+print(metrics.precision_score(y_true, y_pred, average="weighted"))
 
