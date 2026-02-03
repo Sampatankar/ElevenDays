@@ -547,3 +547,20 @@ print(metrics.precision_score(y_true, y_pred, average="micro"))
 print(weighted_precision(y_true, y_pred))
 print(metrics.precision_score(y_true, y_pred, average="weighted"))
 
+
+
+
+# confusion matrix implementation:
+
+# some targets - same as y_true, and y_pred above
+
+cm = metrics.confusion_matrix(y_true, y_pred)
+
+# plot using matplotlib and seaborn:
+plt.figure(figsize=(10,10))
+cmap = sns.cubehelix_palette(50, hue=0.05, rot=0, light=0.9, dark=0, as_cmap = True)
+sns.set(font_scale=2.5)
+sns.heatmap(cm, annot=True, cmap=cmap, cbar=False)
+plt.ylabel('Actual Labels', fontsize=20)
+plt.xlabel('Predicted Labels', fontsize=20)
+plt.show()
