@@ -862,5 +862,11 @@ def mae_np(y_true, y_pred):
     return np.mean(np.abs(y_true - y_pred))
 
 
+# Implementation of Cohen's Kappa / Quadratic Weighted Kappa
+y_true = [1, 2, 3, 1, 2, 3, 1, 2, 3]
+y_pred = [2, 1, 3, 1, 2, 3, 3, 1, 2]
 
+print(metrics.cohen_kappa_score(y_true, y_pred, weights="quadratic"))
+
+print(metrics.accuracy_score(y_true, y_pred))
 
