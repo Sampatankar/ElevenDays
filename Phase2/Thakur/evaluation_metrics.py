@@ -705,6 +705,55 @@ def apk(actual, predicted, k=10):
     return score / min(len(actual), k)
 
 
+# Implementation of Mean Absolute Error (MAE):
+def mean_absolute_error(y_true, y_pred):
+    """
+    This function calculates MAE:
+    
+    :param y_true: List of real numbers, true values
+    :param y_pred: List of real numbers, predicted values
+    :return: MAE
+
+    """
+
+    # initialise error at 0:
+    error = 0
+
+    # loop over all samples in the true and predicted list:
+    for yt, yp in zip(y_true, y_pred):
+        # calculate absolute error and add to the error:
+        error += np.abs(yt - yp)
+    # return mean error:
+    return error / len(y_true)
+
+
+# Implementation of MSE:
+def mean_squared_error(y_true, y_pred):
+    """
+    This function calculates MSE
+    
+    :param y_true: List of real numbers, true values
+    :param y_pred: List of real numbers, predicted values
+    :return: MSE
+
+    """
+
+    # initialise error at 0:
+    error = 0
+
+    # loop over all samples in the true and predicted list:
+    for yt, yp in zip(y_true, y_pred):
+        # calculate squared error and add to error
+        error += (yt - yp) ** 2
+
+    # return mean error:
+    return error / len(y_true)
+
+
+
+# Implementation of MSLE:
+
+
 
 
 
