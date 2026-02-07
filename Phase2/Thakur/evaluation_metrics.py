@@ -798,6 +798,28 @@ def mean_percentage_error(y_true, y_pred):
 
 
 # Implementation of MAPE
+def mean_abs_percentage_error(y_true, y_pred):
+    """
+    This function calculates MAPE
+    
+    :param y_true: list of real numbers, true values
+    :param y_pred: list of real numbers, predicted values
+
+    :return: MAPE
+
+    """
+
+    # initialise error at 0:
+    error = 0
+
+    # loop over all samples in true and predicted list:
+    for yt, yp in zip(y_true, y_pred):
+        # calculate percentage error and add to error:
+        error += np.abs(yt - yp) / yt
+    
+    # return mean percentage error
+    return error / len(y_true)
+
 
 
 
