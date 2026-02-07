@@ -854,3 +854,13 @@ def r2(y_true, y_pred):
     ratio = numerator / denominator
     # return 1 - ratio:
     return 1 - ratio
+
+
+# Implementation of MAE using NumPy (without loops)
+
+def mae_np(y_true, y_pred):
+    return np.mean(np.abs(y_true - y_pred))
+
+
+
+
