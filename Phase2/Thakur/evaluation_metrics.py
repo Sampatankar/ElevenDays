@@ -752,6 +752,52 @@ def mean_squared_error(y_true, y_pred):
 
 
 # Implementation of MSLE:
+def mean_squared_log_error(y_true, y_pred):
+    """
+    This function calculates MSLE
+    
+    :param y_true: List of real numbers, true values
+    :param y_pred: List of real numbers, predicted values
+    :return: MSLE
+
+    """
+
+    # initialise error at 0:
+    error = 0
+
+    # loop over all samples in true and predicted list:
+    for yt, yp in zip(y_true, y_pred):
+        # calculate squared log error and add to error:
+        error += (np.log(1 + yt) - np.log(1 + yp)) ** 2
+    # return mean error:
+    return error / len(y_true)
+
+
+# Implementation of Mean Percentage Error (MPE):
+def mean_percentage_error(y_true, y_pred):
+    """
+    This function calculates MPE
+
+    :param y_true: list of real numbers, true values
+    :param y_pred: list of real numbers, predicted values
+
+    :return: mean percentage error
+
+    """
+
+    # initialise the error at 0:
+    error = 0
+
+    # loop over all samples in the true and predicted list:
+    for yt, yp in zip(y_true, y_pred):
+        # calculate percentage error and add to error:
+        error += (yt - yp) / yt
+
+    # return mean percentage error:
+    return error / len(y_true)
+
+
+# Implementation of MAPE
 
 
 
