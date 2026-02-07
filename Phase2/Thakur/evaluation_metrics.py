@@ -822,6 +822,35 @@ def mean_abs_percentage_error(y_true, y_pred):
 
 
 
+# Implementation of R-squared / Coefficient of Determination
+def r2(y_true, y_pred):
+    """
+    This function calculates r-squared score
+        
+    :param y_true: List of real numbers, true values
+    :param y_pred: List of real numbers, predicted values
 
+    :return: r2 score
 
+    """
 
+    # calculate the mean value of true values:
+    mean_true_value = np.mean(y_true)
+
+    # initialise numerator with 0:
+    numerator = 0
+
+    # initialise denominator with 0:
+    denominator = 0
+
+    # loop over all true and predicted values:
+    for yt, yp in zip(y_true, y_pred):
+        # update numerator:
+        numerator += (yt - yp) ** 2
+        # update denominator:
+        denominator += (yt - mean_true_value) ** 2
+
+    # calculate the ratio
+    ratio = numerator / denominator
+    # return 1 - ratio:
+    return 1 - ratio
