@@ -870,3 +870,33 @@ print(metrics.cohen_kappa_score(y_true, y_pred, weights="quadratic"))
 
 print(metrics.accuracy_score(y_true, y_pred))
 
+
+
+# Implementation of MCC:
+def mcc(y_true, y_pred):
+    """
+    This function calculates Matthew's Correlation Coefficient for binary classification
+    
+    :param y_true: List of True values
+    :param y_pred: List of Predicted Values
+
+    : return: MCC score
+
+    """
+
+    tp = true_positive(y_true, y_pred)
+    tn = true_negative(y_true, y_pred)
+    fp = false_positive(y_true, y_pred)
+    fn = false_negative(y_true, y_pred)
+
+    numerator = (tp * tn) - (fp * fn)
+
+    denominator = (
+        (tp + fn) * (fn + tn) * (fp + tn) * (tp * fn)
+    )
+
+    denominator = denominator ** 0.5
+
+    return numerator / denominator
+
+
