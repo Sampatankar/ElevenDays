@@ -40,6 +40,17 @@ An End-to-end ML Project which uses ZenML and MLFlow (open source MLOps) from Fr
             - factory_design_pattern.py
             - ingest_data.py - implements the factory design patter
 
+
+- Strategy Pattern:
+Imagine you're developing an e-commerce application.  Customers can choose different payment methods like CC, PayPal or Bitcoin.  Each payment method has a different implementation but the overall process is the same: the customer pays for the order.
+
+    - PaymentMethod strategy is an interface that defines how payments are processed
+    - CreditCardPayment, PayPalPayment, BitcoinPayment are concrete strategies that are different implementations of payment processing
+    - ShoppingCart is a context that uses a payment method to process a customer's payment
+    - example code in: explanations/strategy_design_pattern.py
+
+
+
     
 
 
