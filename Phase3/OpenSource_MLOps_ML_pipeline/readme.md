@@ -32,6 +32,14 @@ An End-to-end ML Project which uses ZenML and MLFlow (open source MLOps) from Fr
         - Ensure the model is not only accurate but also maintainable, scalable and ready for real-world use
 
 
+- Step 1: Load Data!
+    - We will ingest data first but:
+        - use design patterns to handle other sets of data accordingly
+        - make it readable and reproducible in that sense
+        - use 'factory' design patterns - where processing the data follows similar methods, only differentiating when needed
+            - factory_design_pattern.py
+            - ingest_data.py - implements the factory design patter
 
+    
 
 
