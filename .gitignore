@@ -1,2 +1,4 @@
 Phase2/example_ml_folderstructure/Thakur_exampleMLFolderStructure/input/mnist_train.csv
 Phase2/example_ml_folderstructure/Thakur_exampleMLFolderStructure/input/mnist_test.csv
+myenv/
+.zen
