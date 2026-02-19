@@ -38,7 +38,22 @@ An End-to-end ML Project which uses ZenML and MLFlow (open source MLOps) from Fr
         - make it readable and reproducible in that sense
         - use 'factory' design patterns - where processing the data follows similar methods, only differentiating when needed
             - factory_design_pattern.py
-            - ingest_data.py - implements the factory design patter
+            - ingest_data.py - implements the factory design pattern
+    - a factory design pattern: 
+        - this makes loading data 'smarter'
+        - instead of your pipeline hard-coding how to read data (e.g. CSV vs JSON vs API vs Kafka), you ask the factory to give you the right ingestion object based on context
+        - You ask for what you want, the factory decides how to do it
+        - The factory pattern:
+            - centralises source-specific logic
+            - hides messy conditionals
+            - makes it easy to add new data sources without touching the pipeline
+            - enforces a consistent interface across ingestion types
+            - the pipeline stays clean and complexity lives in one place
+        - TLDR; so instead of a multitude of hard to test and easy to break if statements for each data object type, we define a common interface with a class and function, then implement concrete ingestors using more class and function methods
+            - The factory itself is a small class and function set of if statements that call on the concrete ingestors which call on the common interface class
+            - the ingestion call statement is then data type agnostic
+                - https://chatgpt.com/share/6996fa89-87bc-800f-84d1-a18295214b29
+                - factory_design_pattern.py in the explanations folder gives an example and explanation in code of the factory design pattern
 
 
 - Strategy Pattern:
