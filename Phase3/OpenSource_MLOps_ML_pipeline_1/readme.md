@@ -56,7 +56,7 @@ An End-to-end ML Project which uses ZenML and MLFlow (open source MLOps) from Fr
                 - factory_design_pattern.py in the explanations folder gives an example and explanation in code of the factory design pattern
 
 
-- Strategy Pattern: (for analysis!)
+- Strategy Pattern: (design pattern applied to EDA)
 Imagine you're developing an e-commerce application.  Customers can choose different payment methods like CC, PayPal or Bitcoin.  Each payment method has a different implementation but the overall process is the same: the customer pays for the order.
 
     - PaymentMethod strategy is an interface that defines how payments are processed
@@ -68,6 +68,11 @@ Imagine you're developing an e-commerce application.  Customers can choose diffe
 
 - EDA:
     - /prices-predictor-system/analysis/EDA.ipynb
+
+
+- Template Pattern (another design pattern):
+
+
 
 
 
