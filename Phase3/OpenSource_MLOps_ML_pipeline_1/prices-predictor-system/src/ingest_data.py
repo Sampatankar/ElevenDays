@@ -16,7 +16,7 @@ class DataIngestor(ABC):
 # Implement a concrete class for ZIP Ingestion
 class ZipDataIngestor(DataIngestor):
     def ingest(self, file_path: str) -> pd.DataFrame:
-        """Extracts a .zip file and returns the content as a pandas DataFrame."""
+        """Extracts a .zip file and returns the content as a pandas DataFrame - also verifies it is a zip"""
         # Ensure the file is a .zip
         if not file_path.endswith(".zip"):
             raise ValueError("The provided file is not a .zip file.")
