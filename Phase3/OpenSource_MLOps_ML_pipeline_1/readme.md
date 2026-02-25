@@ -71,6 +71,12 @@ Imagine you're developing an e-commerce application.  Customers can choose diffe
 
 
 - Template Pattern (another design pattern):
+Imagine you run a restaurant with a set menu for different cuisines.  Each cuisine (like Italian, Chinese or Indian) has a specific sequence of courses: appetiser, main course, dessert and beverage.  The sequence of serving these courses is the same, but the dishes served at each step vary depending on the cuisine. 
+
+For example, in an italian meal, the appetiser might be bruschetta, the main course could be pasta, dessert may be tiramisu and the beverage could be a glass of wine.  In a Chinese meal, the appetiser could be spring rolls, the main course might be stir-fried noodles, dessert could be fortune cookies and the beverage could be tea.
+
+The template here is the overall dining sequence: appetiser, main course, dessert and beverage.  The customisable steps are the specific dishes served at each stage, which change based on the cuisine.
+
 
 
 
